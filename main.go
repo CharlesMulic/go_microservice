@@ -5,8 +5,8 @@ import (
 	"net/http"
 	"os"
 
-	"github.com/CharlesMulic/go_microservice_30min/homepage"
-	"github.com/CharlesMulic/go_microservice_30min/server"
+	"github.com/CharlesMulic/go_microservice/homepage"
+	"github.com/CharlesMulic/go_microservice/server"
 )
 
 var (
