@@ -17,11 +17,22 @@ var (
 
 func main() {
 	logger := log.New(os.Stdout, "Go Microservice ", log.LstdFlags|log.Lshortfile)
+
+	//db, err := sqlx.Open("postgres", "postgress://postgres:postgres@127.0.0.1:5432/testdb?sslmode=disable")
+	//if err != nil {
+	//	logger.Fatalln(err)
+	//}
+	//
+	//err = db.Ping()
+	//if err != nil {
+	//	log.Fatalln(err)
+	//}
+
+	h := homepage.NewHandlers(logger, nil)
+	//h := homepage.NewHandlers(logger, db)
 	mux := http.NewServeMux()
-	h := homepage.NewHandlers(logger)
 
-	mux.HandleFunc("/", h.Home)
-
+	h.SetupRoutes(mux)
 	// srv := NewServer(mux, ServiceAddr)
 	srv := server.New(mux, ":8080")
 
